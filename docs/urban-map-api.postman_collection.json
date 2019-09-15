@@ -1,0 +1,26 @@
+{
+	"info": {
+		"_postman_id": "7ea9fc14-0825-46b8-ae8c-22acdd94e31b",
+		"name": "urban-map-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urbanMapApi}}/healthcheck",
+					"host": [
+						"{{urbanMapApi}}"
+					],
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
