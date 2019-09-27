@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "lint": "eslint --cache 'src/**'"
   },
   "author": "Lucas Alves de Sousa <lucas_comp@outlook.com>",
@@ -19,6 +19,8 @@
     "url": "https://github.com/lucascomp/urban-map-api/issues"
   },
   "dependencies": {
+    "dotenv": "^8.1.0",
+    "kcors": "^2.2.2",
     "koa": "^2.8.1",
     "koa-logger": "^3.2.1",
     "koa-router": "^7.4.0"
