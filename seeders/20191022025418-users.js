@@ -1,0 +1,55 @@
+module.exports = {
+  up: (queryInterface) => queryInterface.bulkInsert('Users',
+    [
+      {
+        firstName: 'Lucas',
+        lastName: 'Sousa',
+        email: 'sousa@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'Glenda',
+        lastName: 'Figueira',
+        email: 'figueira@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'Thyago',
+        lastName: 'Vasconcelos',
+        email: 'vasconcelos@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'Juliana',
+        lastName: 'Moresche',
+        email: 'moresche@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'Pedro',
+        lastName: 'Ráfare',
+        email: 'rafare@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        firstName: 'Juliana',
+        lastName: 'Barbosa',
+        email: 'barbosa@gmail.com',
+        password: 'root',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ], {}),
+
+  down: (queryInterface) => queryInterface.bulkDelete('Users', null, {}),
+};
