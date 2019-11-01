@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const { User } = require('./models');
 const { sha512 } = require('./utils/crypto');
 
-passport.serializeUser(async (id, done) => {
+passport.serializeUser(async ({ id }, done) => {
   done(null, id);
 });
 
@@ -29,14 +29,13 @@ passport.use(new LocalStrategy(
       done(new Error('User not found'));
     } else {
       const {
-        id,
         passwordHash,
         salt,
       } = user;
       const generatedHash = sha512(password, salt);
 
       if (generatedHash === passwordHash) {
-        done(null, id);
+        done(null, user);
       } else {
         done(new Error('Invalid password'));
       }
