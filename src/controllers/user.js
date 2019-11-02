@@ -5,7 +5,7 @@ const { generateSalt, sha512 } = require('../utils/crypto');
 
 const login = async (ctx) => passport.authenticate('local', async (err, user) => {
   if (err) {
-    ctx.status = 500;
+    ctx.throw(400, 'E-mail e/ou senha incorretos');
   } else {
     await ctx.login(user);
     ctx.status = 200;
