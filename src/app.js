@@ -6,6 +6,7 @@ const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
 const session = require('koa-session');
 const passport = require('koa-passport');
+const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
 
 const { APP_KEY, SESSION_COOKIE } = process.env;
@@ -14,6 +15,9 @@ const app = new Koa();
 if (app.env === 'development') {
   app.use(logger());
 }
+
+// error handler
+app.use(errorHandler);
 
 // cors
 app.use(cors({

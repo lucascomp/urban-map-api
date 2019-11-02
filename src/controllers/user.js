@@ -26,43 +26,39 @@ const signup = async (ctx) => {
     password,
   } = ctx.request.body;
 
-  const errors = [];
-
-  if (!validator.isEmail(email)) {
-    errors.push('Invalid email');
-  }
-
   if (firstName.length < 2) {
-    errors.push('Invalid first name');
+    ctx.throw(400, 'Nome inválido');
   }
 
   if (lastName.length < 2) {
-    errors.push('Invalid last name');
+    ctx.throw(400, 'Sobrenome inválido');
+  }
+
+  if (!validator.isEmail(email)) {
+    ctx.throw(400, 'E-mail inválido');
   }
 
   if (password.length < 6) {
-    errors.push('Password must have at least 6 characters');
-  }
-
-  if (errors.length) {
-    ctx.body = { errors };
-    ctx.status = 400;
-    return;
+    ctx.throw(400, 'A senha deve ter pelo menos 6 caracteres');
   }
 
   const salt = generateSalt(16);
   const passwordHash = sha512(password, salt);
 
-  const user = await User.create({
-    email,
-    firstName,
-    lastName,
-    passwordHash,
-    salt,
-  });
+  try {
+    const user = await User.create({
+      email,
+      firstName,
+      lastName,
+      passwordHash,
+      salt,
+    });
 
-  await ctx.login(user);
-  ctx.status = 200;
+    await ctx.login(user);
+    ctx.status = 200;
+  } catch (error) {
+    ctx.throw(400, 'Este e-mail já está em uso');
+  }
 };
 
 module.exports = {
