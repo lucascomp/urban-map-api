@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "49e97367-a79b-4902-9f1d-59af70041fa3",
+		"_postman_id": "81d92798-6f92-4663-849c-0e9500c04128",
 		"name": "Urban-Map-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,6 +8,33 @@
 		{
 			"name": "user",
 			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"lucas.sousa@gmail.com\t\",\n\t\"password\": \"password\",\n\t\"firstName\": \"Lucas\",\n\t\"lastName\": \"Sousa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "login",
 					"request": {
