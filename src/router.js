@@ -5,6 +5,6 @@ const router = new Router();
 
 router.post('/login', login);
 router.get('/logout', logout);
-router.post('/signup', signup);
+router.put('/signup', signup);
 
 module.exports = router;
