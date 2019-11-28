@@ -7,7 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development nodemon bin/server.js",
     "start": "NODE_ENV=production node bin/server.js",
-    "lint": "eslint --cache 'src/**'"
+    "lint": "eslint --cache 'src/**'",
+    "migration": "node -r dotenv/config ./node_modules/.bin/sequelize",
+    "migration:create": "npm run migration migration:generate --",
+    "migration:create:model": "npm run migration model:generate --",
+    "migration:create:seed": "npm run migration seed:generate --",
+    "migration:up": "npm run migration db:migrate",
+    "migration:down": "npm run migration db:migrate:undo",
+    "migration:seed": "npm run migration db:seed:all",
+    "migration:unseed": "npm run migration db:seed:undo"
   },
   "author": "Lucas Alves de Sousa <lucas_comp@outlook.com>",
   "license": "UNLICENSED",
@@ -40,6 +48,7 @@
   "devDependencies": {
     "eslint": "6.1.0",
     "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^2.0.1"
   }
 }
