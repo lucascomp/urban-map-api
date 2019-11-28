@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "81d92798-6f92-4663-849c-0e9500c04128",
-		"name": "Urban-Map-Api",
+		"name": "Urban Map",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -22,15 +22,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"lucas.sousa@gmail.com\t\",\n\t\"password\": \"password\",\n\t\"firstName\": \"Lucas\",\n\t\"lastName\": \"Sousa\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"email\": \"lucas.sousa@gmail.com\t\",\n\t\"password\": \"password\",\n\t\"firstName\": \"Lucas\",\n\t\"lastName\": \"Sousa\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "{{urbanMapApi}}/signup",
+							"host": [
+								"{{urbanMapApi}}"
+							],
+							"path": [
+								"signup"
+							]
 						}
 					},
 					"response": []
@@ -49,12 +50,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"sousa@gmail.com\",\n\t\"password\": \"root\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n\t\"email\": \"sousa@gmail.com\",\n\t\"password\": \"root\"\n}"
 						},
 						"url": {
 							"raw": "{{urbanMapApi}}/login",
