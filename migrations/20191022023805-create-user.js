@@ -8,6 +8,14 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
+        facebookId: {
+          unique: true,
+          type: Sequelize.STRING,
+        },
+        googleId: {
+          unique: true,
+          type: Sequelize.STRING,
+        },
         firstName: {
           allowNull: false,
           type: Sequelize.STRING,
@@ -22,11 +30,9 @@ module.exports = {
           type: Sequelize.STRING,
         },
         passwordHash: {
-          allowNull: false,
           type: Sequelize.STRING,
         },
         salt: {
-          allowNull: false,
           type: Sequelize.STRING,
         },
         createdAt: {

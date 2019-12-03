@@ -1,8 +1,17 @@
 const passport = require('koa-passport');
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const validator = require('validator');
 const { User } = require('./models');
 const { sha512 } = require('./utils/crypto');
+
+const {
+  FACEBOOK_ID,
+  FACEBOOK_SECRET,
+  GOOGLE_ID,
+  GOOGLE_SECRET,
+} = process.env;
 
 passport.serializeUser(async ({ id }, done) => {
   done(null, id);
@@ -52,5 +61,54 @@ passport.use(new LocalStrategy(
     } else {
       done(new Error('Invalid password'));
     }
+  },
+));
+
+const findOrCreateProviderUser = async (provider, profile, done) => {
+  try {
+    const [user] = await User.findOrCreate({
+      attributes: ['id'],
+      defaults: {
+        email: profile.emails[0].value,
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+      },
+      raw: true,
+      where: {
+        [`${provider}Id`]: profile.id,
+      },
+    });
+
+    return done(null, user);
+  } catch (error) {
+    return done(error);
+  }
+};
+
+passport.use(new FacebookStrategy(
+  {
+    clientID: FACEBOOK_ID,
+    clientSecret: FACEBOOK_SECRET,
+    callbackURL: '/login/facebook/callback',
+    profileFields: [
+      'id',
+      'first_name',
+      'last_name',
+      'email',
+    ],
+  },
+  async (accessToken, refreshToken, profile, done) => {
+    findOrCreateProviderUser('facebook', profile, done);
+  },
+));
+
+passport.use(new GoogleStrategy(
+  {
+    clientID: GOOGLE_ID,
+    clientSecret: GOOGLE_SECRET,
+    callbackURL: '/login/google/callback',
+  },
+  async (request, accessToken, refreshToken, profile, done) => {
+    findOrCreateProviderUser('google', profile, done);
   },
 ));

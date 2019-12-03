@@ -3,6 +3,8 @@ const validator = require('validator');
 const { User } = require('../models');
 const { generateSalt, sha512 } = require('../utils/crypto');
 
+const { URBAN_MAP_SITE_BASE_URL } = process.env;
+
 const login = async (ctx) => passport.authenticate('local', async (err, user) => {
   if (err) {
     ctx.throw(400, 'E-mail e/ou senha incorretos');
@@ -10,6 +12,22 @@ const login = async (ctx) => passport.authenticate('local', async (err, user) =>
     await ctx.login(user);
     ctx.status = 200;
   }
+})(ctx);
+
+const loginWithFacebook = (ctx) => passport.authenticate('facebook', {
+  scope: ['email'],
+})(ctx);
+
+const loginWithGoogle = (ctx) => passport.authenticate('google', {
+  scope: [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+  ],
+})(ctx);
+
+const loginCallback = (strategy) => (ctx) => passport.authenticate(strategy, {
+  successRedirect: `${URBAN_MAP_SITE_BASE_URL}/home`,
+  failureRedirect: `${URBAN_MAP_SITE_BASE_URL}/login`,
 })(ctx);
 
 const logout = async (ctx) => {
@@ -63,6 +81,9 @@ const signup = async (ctx) => {
 
 module.exports = {
   login,
+  loginWithFacebook,
+  loginWithGoogle,
+  loginCallback,
   logout,
   signup,
 };
