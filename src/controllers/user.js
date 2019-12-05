@@ -43,8 +43,7 @@ const forgotPassword = async (ctx) => {
       subject: 'Redefinir senha',
       text: `Olá, ${firstName}! Recupere sua senha. É muito simples! Clique no link a seguir e defina uma nova senha: ${URBAN_MAP_SITE_BASE_URL}/reset-password?token=${token} `,
     });
-  }
-  catch (error) {
+  } catch (error) {
     ctx.throw(500, 'Não foi possível enviar o e-mail de redefinição de senha');
   }
 
