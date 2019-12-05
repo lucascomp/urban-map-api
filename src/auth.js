@@ -30,12 +30,12 @@ passport.use(new LocalStrategy(
   { usernameField: 'email' },
   async (email, password, done) => {
     if (!validator.isEmail(email)) {
-      done(new Error('Invalid email'));
+      done(new Error('E-mail inválido'));
       return;
     }
 
     if (password.length < 6) {
-      done(new Error('Password must have at least 6 characters'));
+      done(new Error('A senha precisa ter no mínimo 6 caracteres'));
       return;
     }
 
@@ -46,7 +46,7 @@ passport.use(new LocalStrategy(
     });
 
     if (!user) {
-      done(new Error('User not found'));
+      done(new Error('Usuário não encontrado'));
       return;
     }
 
@@ -59,7 +59,7 @@ passport.use(new LocalStrategy(
     if (generatedHash === passwordHash) {
       done(null, user);
     } else {
-      done(new Error('Invalid password'));
+      done(new Error('Senha inválida'));
     }
   },
 ));
