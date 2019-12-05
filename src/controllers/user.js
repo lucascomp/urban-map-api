@@ -91,7 +91,7 @@ const resetPassword = async (ctx) => {
   const resetToken = await ResetToken.findOne({
     attributes: [],
     include: [{
-      attributes: ['id', 'salt'],
+      attributes: ['id'],
       as: 'user',
       model: User,
     }],
@@ -104,10 +104,10 @@ const resetPassword = async (ctx) => {
   }
 
   const id = resetToken['user.id'];
-  const salt = resetToken['user.salt'];
+  const salt = generateSalt(16);
   const passwordHash = sha512(password, salt);
 
-  await User.update({ passwordHash }, { where: { id } });
+  await User.update({ passwordHash, salt }, { where: { id } });
   await ResetToken.update({ expired: true }, {
     where: {
       userId: id,
