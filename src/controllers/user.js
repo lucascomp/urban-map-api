@@ -5,7 +5,7 @@ const transporter = require('../config/transporter');
 const { ResetToken, User } = require('../models');
 const { generateSalt, sha512 } = require('../utils/crypto');
 
-const { URBAN_MAP_SITE_BASE_URL } = process.env;
+const { EMAIL_USER, URBAN_MAP_SITE_BASE_URL } = process.env;
 
 const forgotPassword = async (ctx) => {
   const { email } = ctx.request.body;
@@ -38,7 +38,7 @@ const forgotPassword = async (ctx) => {
   await ResetToken.create({ userId, token });
   try {
     await transporter.sendMail({
-      from: 'Mapa de acessibilidade urbana <no-reply@urbanmap.com>',
+      from: `Mapa de Acessibilidade Urbana <${EMAIL_USER}>`,
       to: email,
       subject: 'Redefinir senha',
       text: `Olá, ${firstName}! Recupere sua senha. É muito simples! Clique no link a seguir e defina uma nova senha: ${URBAN_MAP_SITE_BASE_URL}/reset-password?token=${token} `,
