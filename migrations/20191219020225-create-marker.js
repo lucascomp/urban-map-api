@@ -1,4 +1,4 @@
-const table = 'Users';
+const table = 'Markers';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,32 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      facebookId: {
-        unique: true,
-        type: Sequelize.STRING,
-      },
-      googleId: {
-        unique: true,
-        type: Sequelize.STRING,
-      },
-      firstName: {
+      lat: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.DOUBLE,
       },
-      lastName: {
+      lng: {
         allowNull: false,
-        type: Sequelize.STRING,
-      },
-      email: {
-        allowNull: false,
-        unique: true,
-        type: Sequelize.STRING,
-      },
-      passwordHash: {
-        type: Sequelize.STRING,
-      },
-      salt: {
-        type: Sequelize.STRING,
+        type: Sequelize.DOUBLE,
       },
       createdAt: {
         allowNull: false,
