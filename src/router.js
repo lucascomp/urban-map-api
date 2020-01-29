@@ -1,4 +1,5 @@
 const Router = require('koa-router');
+const accessibility = require('./controllers/accessibility');
 const marker = require('./controllers/marker');
 const user = require('./controllers/user');
 
@@ -15,5 +16,7 @@ router.post('/reset-password', user.resetPassword);
 router.put('/signup', user.signup);
 
 router.get('/markers', marker.getAll);
+
+router.get('/accessibilities', accessibility.getAll);
 
 module.exports = router;
