@@ -1,4 +1,4 @@
-const table = 'Markers';
+const table = 'Accessibilities';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,13 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      lat: {
+      name: {
         allowNull: false,
-        type: Sequelize.DOUBLE,
-      },
-      lng: {
-        allowNull: false,
-        type: Sequelize.DOUBLE,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -28,8 +24,6 @@ module.exports = {
       deletedAt: {
         type: Sequelize.DATE,
       },
-    }, {
-      paranoid: true,
     });
   },
 

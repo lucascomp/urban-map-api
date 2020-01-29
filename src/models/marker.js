@@ -1,9 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('Marker', {
+  const Marker = sequelize.define('Marker', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+    },
+    accessibilityId: {
       type: DataTypes.INTEGER,
     },
     lat: {
@@ -27,5 +33,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  return User;
+  Marker.associate = ({ User, Accessibility }) => {
+    Marker.belongsTo(User, { as: 'user', foreignKey: 'userId' });
+    Marker.belongsTo(Accessibility, { as: 'accesibility', foreignKey: 'accessibilityId' });
+  };
+
+  return Marker;
 };
