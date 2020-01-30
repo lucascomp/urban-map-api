@@ -16,6 +16,7 @@ router.post('/reset-password', user.resetPassword);
 router.put('/signup', user.signup);
 
 router.get('/markers', marker.getAll);
+router.put('/markers', marker.create);
 
 router.get('/accessibilities', accessibility.getAll);
 

@@ -41,6 +41,26 @@ const getAll = async (ctx) => {
   ctx.body = markers;
 };
 
+const create = async (ctx) => {
+  const {
+    lat,
+    lng,
+    accessibilityId,
+  } = ctx.request.body;
+
+  const { id: userId } = ctx.state.user;
+
+  await Marker.create({
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
+    userId,
+    accessibilityId: parseInt(accessibilityId, 10),
+  });
+
+  ctx.status = 200;
+};
+
 module.exports = {
   getAll,
+  create,
 };
