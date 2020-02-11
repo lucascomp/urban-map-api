@@ -39,5 +39,5 @@ yarn
 
 Enfim, rode a aplicação com o comando:
 ```
-yarn start
+yarn dev
 ```
