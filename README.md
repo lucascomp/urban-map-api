@@ -31,13 +31,14 @@ Esta aplicação tem integração com o Facebook e o Google. Portanto, será nec
 
 ### Desenvolvimento
 
-Para executar aplicação em modo de desenvolvimento, primeiro execute o comando de instalação de dependências:
+Primeiro, execute o comando de instalação de dependências:
 ```
-yarn
+$ npm install -g yarn
+$ yarn
 ```
 
 
 Enfim, rode a aplicação com o comando:
 ```
-yarn dev
+$ yarn dev
 ```
