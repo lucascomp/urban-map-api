@@ -4,9 +4,9 @@ Api do Mapa de Acessibilidade Urbana.
 
 ### Pré-requisitos
 
-- Node.js (versão 12 ou maior)
-- PostgreSQL (versão 9 ou maior)
-- pgAdmin (versão 4 ou maior)
+- [Node.js](https://nodejs.org) (versão 12 ou maior)
+- [PostgreSQL](https://www.postgresql.org/) (versão 9 ou maior)
+- [pgAdmin](https://www.pgadmin.org/) (versão 4 ou maior)
 
 ### Ambientação
 Crie uma cópia do arquivo `.env.default` com o nome `.env` na raíz do projeto. Em seguida, é necessário configurar corretamente as variáveis de ambiente no seu novo arquivo `.env`. As variáveis não são comitadas no repositório por questões de segurança. Entre em contato com o administrador do projeto para demais dúvidas.
