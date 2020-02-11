@@ -25,6 +25,9 @@ PGHOST=[IP-DO-SERVIDOR]
 PGPORT=[PORTA-DO-SERVIDOR]
 ```
 
+### E-mails
+Esta aplicação faz disparo de e-mail automático. Para isso, é necessário ter acesso a conta de e-mail master. Entre em contato com o administrador para mais informações.
+
 ### Integrações
 Esta aplicação tem integração com o Facebook e o Google. Portanto, será necessário configurar corretamente o arquivo `.env` com as chaves de aplicação correspondente de cada plataforma. Além disso, peça ao administrador para ser adicionado nos projetos do Facebook e do Google.
 
