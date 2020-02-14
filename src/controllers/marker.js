@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Marker } = require('../models');
+const { Accessibility, Marker } = require('../models');
 
 const getAll = async (ctx) => {
   const {
@@ -26,7 +26,16 @@ const getAll = async (ctx) => {
   }
 
   const markers = await Marker.findAll({
-    attributes: ['id', 'lat', 'lng'],
+    attributes: [
+      'id',
+      'lat',
+      'lng',
+    ],
+    include: [{
+      model: Accessibility,
+      as: 'accessibility',
+      attributes: ['id'],
+    }],
     raw: true,
     where: {
       lat: {

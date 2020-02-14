@@ -46,5 +46,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  User.associate = ({ Marker }) => {
+    User.hasMany(Marker, { foreignKey: 'useId' });
+  };
+
   return User;
 };

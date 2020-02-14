@@ -23,5 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Accessibility.associate = ({ Marker }) => {
+    Accessibility.hasMany(Marker, { foreignKey: 'accessibilityId' });
+  };
+
   return Accessibility;
 };

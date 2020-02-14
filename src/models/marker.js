@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Marker.associate = ({ User, Accessibility }) => {
     Marker.belongsTo(User, { as: 'user', foreignKey: 'userId' });
-    Marker.belongsTo(Accessibility, { as: 'accesibility', foreignKey: 'accessibilityId' });
+    Marker.belongsTo(Accessibility, { as: 'accessibility', foreignKey: 'accessibilityId' });
   };
 
   return Marker;
