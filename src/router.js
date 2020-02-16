@@ -5,6 +5,10 @@ const user = require('./controllers/user');
 
 const router = new Router();
 
+router.get('/healthcheck', (ctx) => {
+  ctx.body = { status: 'ok' };
+});
+
 router.post('/forgot-password', user.forgotPassword);
 router.post('/login', user.login);
 router.get('/login/facebook', user.loginWithFacebook);
