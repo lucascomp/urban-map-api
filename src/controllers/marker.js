@@ -7,6 +7,7 @@ const getAll = async (ctx) => {
     south,
     east,
     west,
+    accessibilityId,
   } = ctx.query;
 
   if (!north) {
@@ -25,6 +26,21 @@ const getAll = async (ctx) => {
     ctx.throw(400, "O parâmetro 'west' deve ser informado");
   }
 
+  const where = {
+    lat: {
+      [Op.between]: [parseFloat(south), parseFloat(north)],
+    },
+    lng: {
+      [Op.between]: [parseFloat(west), parseFloat(east)],
+    },
+  };
+
+  if (accessibilityId) {
+    where.accessibilityId = {
+      [Op.eq]: accessibilityId,
+    };
+  }
+
   const markers = await Marker.findAll({
     attributes: [
       'id',
@@ -37,14 +53,7 @@ const getAll = async (ctx) => {
       attributes: ['id'],
     }],
     raw: true,
-    where: {
-      lat: {
-        [Op.between]: [parseFloat(south), parseFloat(north)],
-      },
-      lng: {
-        [Op.between]: [parseFloat(west), parseFloat(east)],
-      },
-    },
+    where,
   });
 
   ctx.body = markers;
