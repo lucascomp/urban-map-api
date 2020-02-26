@@ -7,7 +7,6 @@ const getAll = async (ctx) => {
     south,
     east,
     west,
-    accessibilityId,
   } = ctx.query;
 
   if (!north) {
@@ -34,12 +33,6 @@ const getAll = async (ctx) => {
       [Op.between]: [parseFloat(west), parseFloat(east)],
     },
   };
-
-  if (accessibilityId) {
-    where.accessibilityId = {
-      [Op.eq]: accessibilityId,
-    };
-  }
 
   const markers = await Marker.findAll({
     attributes: [
