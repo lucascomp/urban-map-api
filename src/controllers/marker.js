@@ -39,6 +39,7 @@ const getAll = async (ctx) => {
       'id',
       'lat',
       'lng',
+      'description',
     ],
     include: [{
       model: Accessibility,
@@ -56,6 +57,7 @@ const create = async (ctx) => {
   const {
     lat,
     lng,
+    description,
     accessibilityId,
   } = ctx.request.body;
 
@@ -66,6 +68,7 @@ const create = async (ctx) => {
     lng: parseFloat(lng),
     userId,
     accessibilityId: parseInt(accessibilityId, 10),
+    description,
   });
 
   ctx.status = 200;

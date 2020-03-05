@@ -33,6 +33,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DOUBLE,
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING(1000),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
