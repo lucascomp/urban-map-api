@@ -44,7 +44,7 @@ const getAll = async (ctx) => {
     include: [{
       model: Accessibility,
       as: 'accessibility',
-      attributes: ['id'],
+      attributes: ['id', 'name'],
     }],
     raw: true,
     where,
