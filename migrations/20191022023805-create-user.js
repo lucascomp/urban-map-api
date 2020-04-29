@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      admin: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
+      },
       facebookId: {
         unique: true,
         type: Sequelize.STRING,

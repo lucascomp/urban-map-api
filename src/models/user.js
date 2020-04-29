@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
+    admin: {
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+    },
     facebookId: {
       unique: true,
       type: DataTypes.STRING,

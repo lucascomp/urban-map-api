@@ -50,6 +50,22 @@ const forgotPassword = async (ctx) => {
   ctx.status = 200;
 };
 
+const getUser = (ctx) => {
+  const {
+    admin,
+    email,
+    firstName,
+    lastName,
+  } = ctx.state.user;
+
+  ctx.body = {
+    admin,
+    email,
+    firstName,
+    lastName,
+  };
+};
+
 const login = async (ctx) => passport.authenticate('local', async (err, user) => {
   if (err) {
     ctx.throw(400, 'E-mail e/ou senha incorretos');
@@ -79,6 +95,50 @@ const logout = async (ctx) => {
   ctx.logout();
   ctx.session = null;
   ctx.status = 200;
+};
+
+const registerAdmin = async (ctx) => {
+  const {
+    email,
+    firstName,
+    lastName,
+    password,
+  } = ctx.request.body;
+
+  if (firstName.length < 2) {
+    ctx.throw(400, 'Nome inválido');
+  }
+
+  if (lastName.length < 2) {
+    ctx.throw(400, 'Sobrenome inválido');
+  }
+
+  if (!validator.isEmail(email)) {
+    ctx.throw(400, 'E-mail inválido');
+  }
+
+  if (password.length < 6) {
+    ctx.throw(400, 'A senha deve ter pelo menos 6 caracteres');
+  }
+
+  const salt = generateSalt(16);
+  const passwordHash = sha512(password, salt);
+
+  try {
+    const user = await User.create({
+      admin: true,
+      email,
+      firstName,
+      lastName,
+      passwordHash,
+      salt,
+    });
+
+    await ctx.login(user);
+    ctx.status = 200;
+  } catch (error) {
+    ctx.throw(400, 'Este e-mail já está em uso');
+  }
 };
 
 const resetPassword = async (ctx) => {
@@ -163,11 +223,13 @@ const signup = async (ctx) => {
 
 module.exports = {
   forgotPassword,
+  getUser,
   login,
   loginWithFacebook,
   loginWithGoogle,
   loginCallback,
   logout,
+  registerAdmin,
   resetPassword,
   signup,
 };
