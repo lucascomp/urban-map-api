@@ -24,6 +24,7 @@ router.put('/signup', user.signup);
 
 router.get('/markers', restrictedSession, marker.getAll);
 router.put('/markers', restrictedSession, marker.create);
+router.post('/markers', restrictedSession, marker.edit);
 
 router.get('/accessibilities', restrictedSession, accessibility.getAll);
 

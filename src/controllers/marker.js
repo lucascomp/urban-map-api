@@ -74,7 +74,33 @@ const create = async (ctx) => {
   ctx.status = 200;
 };
 
+const edit = async (ctx) => {
+  const { admin } = ctx.state.user;
+
+  if (!admin) {
+    ctx.throw(401, 'Apenas usuário admin pode realizar edições');
+  }
+
+  const {
+    id,
+    lat,
+    lng,
+    description,
+    accessibilityId,
+  } = ctx.request.body;
+
+  await Marker.update({
+    lat,
+    lng,
+    description,
+    accessibilityId,
+  }, { where: { id } });
+
+  ctx.status = 200;
+};
+
 module.exports = {
   getAll,
   create,
+  edit,
 };
