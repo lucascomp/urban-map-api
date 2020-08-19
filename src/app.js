@@ -38,7 +38,9 @@ app.use(session({
   key: SESSION_COOKIE,
   signed: false,
   httpOnly: false,
-  store: redisStore(REDIS_URI),
+  store: redisStore({
+    url: REDIS_URI,
+  }),
   cookie: {
     domain: COOKIE_DOMAIN,
   },
