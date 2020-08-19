@@ -30,6 +30,7 @@ app.keys = [APP_KEY];
 app.use(session({
   key: SESSION_COOKIE,
   cookie: {
+    signed: false,
     domain: COOKIE_DOMAIN,
   },
   httpOnly: false,
