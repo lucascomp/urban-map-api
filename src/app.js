@@ -9,7 +9,7 @@ const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
 
-const { APP_KEY, SESSION_COOKIE } = process.env;
+const { APP_KEY, COOKIE_DOMAIN, SESSION_COOKIE } = process.env;
 const app = new Koa();
 
 if (app.env === 'development') {
@@ -29,7 +29,11 @@ app.use(cors({
 app.keys = [APP_KEY];
 app.use(session({
   key: SESSION_COOKIE,
+  cookie: {
+    domain: COOKIE_DOMAIN,
+  },
   httpOnly: false,
+  signed: false,
 }, app));
 
 // bodyparser
