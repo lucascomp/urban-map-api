@@ -32,12 +32,7 @@ console.log('COOKIE_DOMAIN', COOKIE_DOMAIN);
 app.keys = [APP_KEY];
 app.use(session({
   key: SESSION_COOKIE,
-  cookie: {
-    signed: false,
-    domain: COOKIE_DOMAIN,
-  },
   httpOnly: false,
-  signed: false,
 }, app));
 
 // bodyparser
