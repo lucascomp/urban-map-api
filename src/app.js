@@ -34,6 +34,7 @@ app.use(session({
     signed: false,
     domain: COOKIE_DOMAIN,
   },
+  domain: COOKIE_DOMAIN,
   signed: false,
   httpOnly: false,
 }));
