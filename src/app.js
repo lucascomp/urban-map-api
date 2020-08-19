@@ -4,7 +4,8 @@ const Koa = require('koa');
 const cors = require('kcors');
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
-const session = require('koa-session');
+// const session = require('koa-session');
+const session = require('koa-generic-session');
 const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
@@ -30,6 +31,7 @@ app.keys = [APP_KEY];
 app.use(session({
   key: SESSION_COOKIE,
   cookie: {
+    signed: false,
     domain: COOKIE_DOMAIN,
   },
   httpOnly: false,
