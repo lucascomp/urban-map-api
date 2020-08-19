@@ -4,7 +4,7 @@ const Koa = require('koa');
 const cors = require('kcors');
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
-const session = require('koa-generic-session');
+const session = require('koa-session2');
 const redisStore = require('koa-redis');
 const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
@@ -38,14 +38,7 @@ app.use(session({
   key: SESSION_COOKIE,
   signed: false,
   httpOnly: false,
-  store: redisStore({
-    url: REDIS_URL,
-  }),
-  cookie: {
-    domain: COOKIE_DOMAIN,
-  },
-  resave: false,
-  saveUninitialized: false,
+  domain: COOKIE_DOMAIN,
 }, app));
 
 // bodyparser
