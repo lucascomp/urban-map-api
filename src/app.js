@@ -14,7 +14,7 @@ const {
   APP_KEY,
   COOKIE_DOMAIN,
   SESSION_COOKIE,
-  REDIS_URI,
+  REDIS_URL,
 } = process.env;
 
 const app = new Koa();
@@ -39,7 +39,7 @@ app.use(session({
   signed: false,
   httpOnly: false,
   store: redisStore({
-    url: REDIS_URI,
+    url: REDIS_URL,
   }),
   cookie: {
     domain: COOKIE_DOMAIN,
