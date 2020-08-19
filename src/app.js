@@ -9,7 +9,7 @@ const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
 
-const { SESSION_COOKIE, COOKIE_DOMAIN } = process.env;
+const { SESSION_COOKIE } = process.env;
 const app = new Koa();
 
 app.proxy = true;
@@ -30,12 +30,6 @@ app.use(cors({
 // session
 app.use(session({
   key: SESSION_COOKIE,
-  cookie: {
-    signed: false,
-    domain: COOKIE_DOMAIN,
-  },
-  domain: COOKIE_DOMAIN,
-  signed: false,
   httpOnly: false,
 }));
 

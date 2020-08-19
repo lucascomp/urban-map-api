@@ -1,3 +1,4 @@
 const app = require('../src/app');
 
-app.listen(process.env.PORT);
+// eslint-disable-next-line no-console
+app.listen(process.env.PORT, console.log('> Ready!'));
