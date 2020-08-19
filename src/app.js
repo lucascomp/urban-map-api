@@ -39,6 +39,8 @@ app.use(session({
   signed: false,
   httpOnly: false,
   domain: COOKIE_DOMAIN,
+  resave: false,
+  saveUninitialized: false,
 }, app));
 
 // bodyparser
