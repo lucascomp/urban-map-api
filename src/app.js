@@ -4,13 +4,12 @@ const Koa = require('koa');
 const cors = require('kcors');
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
-// const session = require('koa-session');
-const session = require('koa-generic-session');
+const session = require('koa-session');
 const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
 
-const { APP_KEY, COOKIE_DOMAIN, SESSION_COOKIE } = process.env;
+const { APP_KEY, SESSION_COOKIE } = process.env;
 const app = new Koa();
 
 if (app.env === 'development') {
@@ -25,8 +24,6 @@ app.use(cors({
   allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS'],
   credentials: true,
 }));
-
-console.log('COOKIE_DOMAIN', COOKIE_DOMAIN);
 
 // session
 app.keys = [APP_KEY];
