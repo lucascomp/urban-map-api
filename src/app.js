@@ -26,6 +26,8 @@ app.use(cors({
   credentials: true,
 }));
 
+console.log('COOKIE_DOMAIN', COOKIE_DOMAIN);
+
 // session
 app.keys = [APP_KEY];
 app.use(session({
