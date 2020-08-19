@@ -5,7 +5,6 @@ const cors = require('kcors');
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
 const session = require('koa-session2');
-const redisStore = require('koa-redis');
 const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
@@ -14,7 +13,6 @@ const {
   APP_KEY,
   COOKIE_DOMAIN,
   SESSION_COOKIE,
-  REDIS_URL,
 } = process.env;
 
 const app = new Koa();
