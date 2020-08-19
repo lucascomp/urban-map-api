@@ -41,9 +41,6 @@ app.use(session({
   store: redisStore({
     url: REDIS_URL,
   }),
-  cookie: {
-    domain: COOKIE_DOMAIN,
-  },
 }, app));
 
 // bodyparser
