@@ -29,9 +29,7 @@ app.use(cors({
 app.keys = [APP_KEY];
 app.use(session({
   key: SESSION_COOKIE,
-  cookie: {
-    domain: COOKIE_DOMAIN,
-  },
+  domain: COOKIE_DOMAIN,
   signed: false,
   httpOnly: false,
 }, app));
