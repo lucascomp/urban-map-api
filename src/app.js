@@ -4,12 +4,19 @@ const Koa = require('koa');
 const cors = require('kcors');
 const logger = require('koa-logger');
 const bodyparser = require('koa-bodyparser');
-const session = require('koa-session');
+const session = require('koa-generic-session');
+const redisStore = require('koa-redis');
 const passport = require('koa-passport');
 const { errorHandler } = require('./middlewares/errorHandler');
 const router = require('./router');
 
-const { APP_KEY, SESSION_COOKIE } = process.env;
+const {
+  APP_KEY,
+  COOKIE_DOMAIN,
+  SESSION_COOKIE,
+  REDIS_URI,
+} = process.env;
+
 const app = new Koa();
 
 if (app.env === 'development') {
@@ -31,6 +38,10 @@ app.use(session({
   key: SESSION_COOKIE,
   signed: false,
   httpOnly: false,
+  store: redisStore(REDIS_URI),
+  cookie: {
+    domain: COOKIE_DOMAIN,
+  },
 }, app));
 
 // bodyparser
